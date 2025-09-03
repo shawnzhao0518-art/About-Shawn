@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-i18n="title">About Shawn</title>
+  <meta name="description" content="Shawn's personal introduction">
+  <style>
+    :root { --maxw:800px; --shadow:0 4px 12px rgba(0,0,0,0.1); }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body { font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; background:#f5f5f5; color:#111; line-height:1.65; }
+    header { background:#111; color:#fff; padding:20px 16px; }
+    header .wrap { max-width:var(--maxw); margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:12px; }
+    header h1 { font-size:22px; letter-spacing:.3px; }
+    .lang-switch { display:flex; gap:8px; }
+    .btn { appearance:none; border:1px solid rgba(255,255,255,.4); background:transparent; color:#fff; padding:6px 10px; border-radius:8px; cursor:pointer; font-size:14px; }
+    .btn[aria-pressed="true"] { background:#fff; color:#111; border-color:#fff; }
+    main { max-width:var(--maxw); margin:24px auto; background:#fff; border-radius:12px; box-shadow:var(--shadow); padding:24px 18px; }
+    .profile { text-align:center; }
+    .profile img { max-width:200px; border-radius:12px; margin:10px auto 16px; display:block; }
+    .profile h2 { font-size:20px; margin:8px 0 12px; color:#222; }
+    .profile p { text-align:left; font-size:16px; color:#333; }
+    .profile p + p { margin-top:10px; }
+    .actions { margin:14px 0 18px; display:flex; justify-content:center; }
+    .email-btn {
+      appearance:none; border:0; border-radius:10px; padding:10px 14px;
+      background:#0a66c2; color:#fff; font-size:15px; cursor:pointer;
+      box-shadow:0 2px 8px rgba(10,102,194,.25);
+    }
+    .email-btn:hover { filter:brightness(1.05); }
+    .email-btn:active { transform:translateY(1px); }
+    footer { text-align:center; padding:18px; font-size:14px; color:#666; }
+    a { color:#0a66c2; text-decoration:none; }
+    a:hover { text-decoration:underline; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <h1 data-i18n="header">About Shawn</h1>
+      <div class="lang-switch" role="group" aria-label="Language switch">
+        <button class="btn" id="btn-zh" data-lang="zh" aria-pressed="false">中文</button>
+        <button class="btn" id="btn-en" data-lang="en" aria-pressed="true">English</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="profile">
+      <img src="https://i.ibb.co/kVf9DfyJ/IMG-9729.jpg" alt="Shawn's photo">
+      <h2 data-i18n="hello">Hello, I'm Shawn</h2>
+
+      <div class="actions">
+        <a id="emailLink" class="email-btn" href="mailto:shawnzhao0518@gmail.com" data-i18n="email_btn">
+          Email Me
+        </a>
+      </div>
+
+      <p data-i18n="p1_zh">
+        Hi, I'm Shawn. I'm passionate about flying, photography, and creative expression. Through the lens I seek to capture the freedom of the sky and the beauty of nature.
+      </p>
+      <p data-i18n="p2_zh">
+        Beyond aerial shooting, I enjoy sports, reading, and exploring new fields—these keep my curiosity and creativity alive.
+      </p>
+      <p data-i18n="p3_zh">
+        In study and life, I believe persistence and effort bring rewards, and I hope to pass this positivity to people around me. This journey is not only about exploring the skies, but also about challenging and growing myself.
+      </p>
+      <p data-i18n="p4_zh">
+        Thanks for visiting my work. May we all soar higher and go further in pursuit of our dreams.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <span data-i18n="footer">© 2025 Shawn</span> · <a href="index.html" data-i18n="back">Back to Home</a>
+  </footer>
+
+  <script>
+    const I18N = {
+      zh: {
+        title: "关于 Shawn",
+        header: "关于 Shawn",
+        hello: "你好，我是 Shawn",
+        email_btn: "发送邮件",
+        p1_zh: "大家好，我是 Shawn。我热爱飞行、摄影和创作，希望通过镜头记录下天空的自由与大自然的美丽。",
+        p2_zh: "除了航拍，我也喜欢运动、阅读和探索新的领域，这让我保持好奇心和创造力。",
+        p3_zh: "在学习和生活中，我相信坚持与努力能够带来收获，也希望把这份积极与热情传递给身边的人。这段旅程不仅是对天空的探索，也是对自我的挑战与成长。",
+        p4_zh: "感谢你来到这里观看我的作品，愿我们都能在追逐梦想的路上，飞得更高、更远。",
+        footer: "© 2025 Shawn",
+        back: "返回首页"
+      },
+      en: {
+        title: "About Shawn",
+        header: "About Shawn",
+        hello: "Hello, I'm Shawn",
+        email_btn: "Email Me",
+        p1_zh: "Hi, I'm Shawn. I'm passionate about flying, photography, and creative expression. Through the lens I seek to capture the freedom of the sky and the beauty of nature.",
+        p2_zh: "Beyond aerial shooting, I enjoy sports, reading, and exploring new fields—these keep my curiosity and creativity alive.",
+        p3_zh: "In study and life, I believe persistence and effort bring rewards, and I hope to pass this positivity to people around me. This journey is not only about exploring the skies, but also about challenging and growing myself.",
+        p4_zh: "Thanks for visiting my work. May we all soar higher and go further in pursuit of our dreams.",
+        footer: "© 2025 Shawn",
+        back: "Back to Home"
+      }
+    };
+
+    function getQueryLang() {
+      const m = location.search.match(/[?&]lang=(en|zh)\b/i);
+      return m ? m[1].toLowerCase() : null;
+    }
+
+    const htmlEl = document.documentElement;
+    const btnZh = document.getElementById('btn-zh');
+    const btnEn = document.getElementById('btn-en');
+
+    function applyLang(lang) {
+      const dict = I18N[lang] || I18N.en;
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (dict[key]) el.textContent = dict[key];
+      });
+      htmlEl.lang = lang;
+      btnZh.setAttribute('aria-pressed', String(lang === 'zh'));
+      btnEn.setAttribute('aria-pressed', String(lang === 'en'));
+      try { localStorage.setItem('lang', lang); } catch(e) {}
+      document.title = dict.title || document.title;
+    }
+
+    // 默认优先英文
+    const initLang = getQueryLang() ||
+      (localStorage.getItem('lang') || '').toLowerCase() ||
+      'en';
+
+    applyLang(initLang);
+
+    btnZh.addEventListener('click', () => applyLang('zh'));
+    btnEn.addEventListener('click', () => applyLang('en'));
+  </script>
+</body>
+</html>
