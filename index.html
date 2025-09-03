@@ -17,7 +17,7 @@
     .btn[aria-pressed="true"] { background:#fff; color:#111; border-color:#fff; }
     main { max-width:var(--maxw); margin:24px auto; background:#fff; border-radius:12px; box-shadow:var(--shadow); padding:24px 18px; }
     .profile { text-align:center; }
-    .profile img { max-width:200px; border-radius:12px; margin:10px auto 16px; display:block; }
+    .profile img { max-width:200px; border-radius:12px; margin:10px auto 16px; display:block; cursor:pointer; }
     .profile h2 { font-size:20px; margin:8px 0 12px; color:#222; }
     .profile p { text-align:left; font-size:16px; color:#333; }
     .profile p + p { margin-top:10px; }
@@ -32,6 +32,31 @@
     footer { text-align:center; padding:18px; font-size:14px; color:#666; }
     a { color:#0a66c2; text-decoration:none; }
     a:hover { text-decoration:underline; }
+
+    /* Lightbox 样式 */
+    .lightbox {
+      display:none;
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,0.88);
+      justify-content:center;
+      align-items:center;
+      z-index:1000;
+    }
+    .lightbox img {
+      max-width:90%;
+      max-height:90%;
+      border-radius:12px;
+      box-shadow:0 8px 24px rgba(0,0,0,0.4);
+    }
+    .lightbox-close {
+      position:absolute;
+      top:20px;
+      right:30px;
+      font-size:40px;
+      color:#fff;
+      cursor:pointer;
+    }
   </style>
 </head>
 <body>
@@ -47,7 +72,8 @@
 
   <main>
     <section class="profile">
-      <img src="https://i.ibb.co/kVf9DfyJ/IMG-9729.jpg" alt="Shawn's photo">
+      <!-- 点击头像可放大 -->
+      <img src="https://i.imgur.com/wUxKLCr.jpeg" alt="Shawn's photo" id="profilePhoto">
       <h2 data-i18n="hello">Hello, I'm Shawn</h2>
 
       <div class="actions">
@@ -74,6 +100,12 @@
   <footer>
     <span data-i18n="footer">© 2025 Shawn</span> · <a href="index.html" data-i18n="back">Back to Home</a>
   </footer>
+
+  <!-- Lightbox 容器 -->
+  <div class="lightbox" id="photoLightbox">
+    <span class="lightbox-close" id="photoClose">&times;</span>
+    <img id="photoLarge" src="" alt="Shawn enlarged photo">
+  </div>
 
   <script>
     const I18N = {
@@ -134,6 +166,23 @@
 
     btnZh.addEventListener('click', () => applyLang('zh'));
     btnEn.addEventListener('click', () => applyLang('en'));
+
+    // Profile photo lightbox
+    const profilePhoto = document.getElementById("profilePhoto");
+    const photoLightbox = document.getElementById("photoLightbox");
+    const photoClose = document.getElementById("photoClose");
+    const photoLarge = document.getElementById("photoLarge");
+
+    profilePhoto.addEventListener("click", () => {
+      photoLarge.src = profilePhoto.src;
+      photoLightbox.style.display = "flex";
+    });
+    photoClose.addEventListener("click", () => {
+      photoLightbox.style.display = "none";
+    });
+    window.addEventListener("click", e => {
+      if (e.target === photoLightbox) photoLightbox.style.display = "none";
+    });
   </script>
 </body>
 </html>
