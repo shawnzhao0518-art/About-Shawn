@@ -26,38 +26,29 @@
       appearance:none; border:0; border-radius:10px; padding:10px 14px;
       background:#0a66c2; color:#fff; font-size:15px; cursor:pointer;
       box-shadow:0 2px 8px rgba(10,102,194,.25);
-      text-decoration:none;
+      text-decoration:none; display:inline-block;
     }
     .email-btn:hover { filter:brightness(1.05); }
     .email-btn:active { transform:translateY(1px); }
     footer { text-align:center; padding:18px; font-size:14px; color:#666; }
-    footer .footer-actions { margin-top:10px; }
     a { color:#0a66c2; text-decoration:none; }
     a:hover { text-decoration:underline; }
 
-    /* Lightbox 样式 */
+    /* Lightbox */
     .lightbox {
-      display:none;
-      position:fixed;
-      inset:0;
+      display:none; position:fixed; inset:0;
       background:rgba(0,0,0,0.88);
-      justify-content:center;
-      align-items:center;
+      justify-content:center; align-items:center;
       z-index:1000;
     }
     .lightbox img {
-      max-width:90%;
-      max-height:90%;
+      max-width:90%; max-height:90%;
       border-radius:12px;
       box-shadow:0 8px 24px rgba(0,0,0,0.4);
     }
     .lightbox-close {
-      position:absolute;
-      top:20px;
-      right:30px;
-      font-size:40px;
-      color:#fff;
-      cursor:pointer;
+      position:absolute; top:20px; right:30px;
+      font-size:40px; color:#fff; cursor:pointer;
     }
   </style>
 </head>
@@ -74,14 +65,21 @@
 
   <main>
     <section class="profile">
-      <!-- 点击头像可放大 -->
       <img src="https://i.imgur.com/wUxKLCr.jpeg" alt="Shawn's photo" id="profilePhoto">
       <h2 data-i18n="hello">Hello, I'm Shawn</h2>
 
       <div class="actions">
-        <a id="emailLink" class="email-btn" 
-           href="https://mail.google.com/mail/?view=cm&fs=1&to=shawnzhao0518@gmail.com" target="_blank" 
-           data-i18n="email_btn">Email Me</a>
+        <!-- 上面的 Email Me 按钮 保留 -->
+        <a
+          id="emailLink"
+          class="email-btn"
+          href="https://mail.google.com/mail/?view=cm&fs=1&to=shawnzhao0518@gmail.com"
+          target="_blank"
+          rel="noopener"
+          data-i18n="email_btn"
+        >
+          Email Me
+        </a>
       </div>
 
       <p data-i18n="p1_zh">
@@ -100,15 +98,21 @@
   </main>
 
   <footer>
-    <span data-i18n="footer">© 2025 Shawn</span> · <a href="index.html" data-i18n="back">Back to Home</a>
-    <div class="footer-actions">
-      <a class="email-btn" 
-         href="https://mail.google.com/mail/?view=cm&fs=1&to=shawnzhao0518@gmail.com" target="_blank" 
-         data-i18n="email_btn">Email Me</a>
+    <div style="margin-bottom:10px; line-height:1.6;">
+      💡 Need a personal website like this or want to give feedback?<br>
+      📩 Contact me — website design & setup service available.<br>
+      ✉️ Email:
+      <a href="https://mail.google.com/mail/?view=cm&fs=1&to=shawnzhao0518@gmail.com" target="_blank">
+        shawnzhao0518@gmail.com
+      </a>
+    </div>
+    <div style="margin-top:8px;">
+      <span data-i18n="footer">© 2025 Shawn</span> ·
+      <a href="index.html" data-i18n="back">Back to Home</a>
     </div>
   </footer>
 
-  <!-- Lightbox 容器 -->
+  <!-- Lightbox -->
   <div class="lightbox" id="photoLightbox">
     <span class="lightbox-close" id="photoClose">&times;</span>
     <img id="photoLarge" src="" alt="Shawn enlarged photo">
@@ -172,7 +176,6 @@
     btnZh.addEventListener('click', () => applyLang('zh'));
     btnEn.addEventListener('click', () => applyLang('en'));
 
-    // Profile photo lightbox
     const profilePhoto = document.getElementById("profilePhoto");
     const photoLightbox = document.getElementById("photoLightbox");
     const photoClose = document.getElementById("photoClose");
@@ -190,4 +193,4 @@
     });
   </script>
 </body>
-</html>、
+</html>
